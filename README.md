@@ -50,3 +50,10 @@ The application requires the following environment variables:
    ```sh
    azd up
    ```
+5. If missing environment variables setting, you can update the environment variables using the Azure CLI after deployment:
+
+   ```sh
+   az login
+   
+   az containerapp update --name <your-app-name> --resource-group <your-resource-group> --set-env-vars GITHUB_TOKEN=your_github_token_here
+   ```
