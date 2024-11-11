@@ -43,7 +43,7 @@ The application requires the following environment variables:
 3. update `.env` with your GitHub Token. You can create a new fine-grained PAT via the [Developer Settings section](https://github.com/settings/personal-access-tokens/new) in your account settings.
 
    ```sh
-   GITHUB_TOKEN=your_github_token_xxxxxxxxxxxxxxxxxx
+   echo "GITHUB_TOKEN=your_github_token_here" > src/.env
    ```
 4. Start the app：
 
