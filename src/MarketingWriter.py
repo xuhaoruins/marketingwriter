@@ -3,7 +3,7 @@ from openai import AzureOpenAI
 import streamlit as st
 import json
 import time
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 from azure.ai.inference import ChatCompletionsClient
 from azure.core.credentials import AzureKeyCredential
@@ -17,11 +17,18 @@ from azure.ai.inference.models import (
 )
 
 #Use GitHub Token to access the Azure OpenAI service
-load_dotenv()
-token = os.getenv("GITHUB_TOKEN")
+
+# 尝试加载 .env 文件
+dotenv_path = find_dotenv()
+if dotenv_path:
+    load_dotenv(dotenv_path)
+
+# 获取 GITHUB_TOKEN
+token = os.getenv("GITHUB_TOKEN") or os.environ.get("GITHUB_TOKEN")
+
 if not token:
     raise ValueError("GITHUB_TOKEN environment variable is not set")
-#token = os.environ["GITHUB_TOKEN"]
+
 endpoint = "https://models.inference.ai.azure.com"
 
 model_name = "gpt-4o"
